@@ -15,6 +15,7 @@ let words = [];
 init();
 
 function init() {
+    buttonChange('게임 로딩중 ...');
     getWords();
     wordInput.addEventListener('input', checkMatch);
 }
@@ -28,18 +29,21 @@ function checkStatus() {
 
 // 단어 불러오기
 async function getWords () {
-    await axios.get('https://random-word-api.herokuapp.com/word?number=10')
+    await axios.get('https://random-word-api.herokuapp.com/word?number=100')
         .then(function (response) {
             // 성공 핸들링
-            words = response.data;
+            response.data.forEach(word => {
+                if(word.length < 10){
+                    words.push(word);
+                }
+            })
+
+            buttonChange('게임시작');
         })
         .catch(function (error) {
             // 에러 핸들링
             console.log(error);
         });
-
-    
-    buttonChange('게임시작');
 }
 
 // 단어일치 확인
