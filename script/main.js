@@ -27,8 +27,18 @@ function checkStatus() {
 }
 
 // 단어 불러오기
-function getWords() {
-    words = ["Apple", "Banana", "Strawberry", "Cherry"];
+async function getWords () {
+    await axios.get('https://random-word-api.herokuapp.com/word?number=10')
+        .then(function (response) {
+            // 성공 핸들링
+            words = response.data;
+        })
+        .catch(function (error) {
+            // 에러 핸들링
+            console.log(error);
+        });
+
+    
     buttonChange('게임시작');
 }
 
