@@ -7,6 +7,7 @@ describe("example counter app", () => {
     cy.get("#value").invoke("text").should("eq", "0");
   });
 
+  // functional test
   it("+ 버튼을 클릭 시 count가 1증가한다.", () => {
     // 기존 값가져오고, + 버튼 클릭시 값이 +1인지 체크
     cy.get("#value")
@@ -36,6 +37,18 @@ describe("example counter app", () => {
       });
   });
 
+  it("reset 버튼을 클릭 시 counter가 0으로 초기화된다.", () => {
+    // + 버튼 5번 클릭 후 리셋버튼 누르기
+    for (let i = 0; i < 5; i++) {
+      cy.get(".increase-btn").click();
+    }
+
+    cy.get(".reset-btn").click();
+
+    cy.get("#value").invoke("text").should("eq", "0");
+  });
+
+  // exceoption test
   it("+ 버튼을 클릭 시 count가 10이 넘는 경우 더이상 증가하지 못한다. (Max 값이 10)", () => {
     for (let i = 0; i < 11; i++) {
       cy.get(".increase-btn").click();
