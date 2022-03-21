@@ -42,4 +42,16 @@ describe("계산기 어플리케이션 테스트", () => {
     cy.get(".operation").contains("=").click();
     cy.get("#total").should("have.text", "5");
   });
+
+  it("AC(All Clear)버튼을 누르면 0으로 초기화 한다.", () => {
+    cy.get(".digit").contains("5").click();
+    cy.get(".operation").contains("/").click();
+    cy.get(".digit").contains("1").click();
+    cy.get(".operation").contains("=").click();
+    cy.get(".operation").contains("x").click();
+    cy.get(".digit").contains("7").click();
+    cy.get(".operation").contains("=").click();
+    cy.get(".modifier").contains("AC").click();
+    cy.get("#total").invoke("text").should("eq", "0");
+  });
 });
