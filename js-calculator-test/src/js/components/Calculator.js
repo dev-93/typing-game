@@ -4,7 +4,7 @@ import Operations from "./Operations.js";
 import Modifiers from "./Modifiers.js";
 import { OPERATOR, caculate } from "../utils/math.js";
 
-class Caculator {
+class Calculator {
   constructor() {
     this.state = {
       input: null,
@@ -179,4 +179,4 @@ class Caculator {
   }
 }
 
-export default Caculator;
+export default Calculator;
