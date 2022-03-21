@@ -26,4 +26,12 @@ describe("계산기 어플리케이션 테스트", () => {
     cy.get(".operation").contains("=").click();
     cy.get("#total").should("have.text", "3");
   });
+
+  it("2개의 숫자에 대해 곱셈이 가능하다", () => {
+    cy.get(".digit").contains("2").click();
+    cy.get(".operation").contains("x").click();
+    cy.get(".digit").contains("1").click();
+    cy.get(".operation").contains("=").click();
+    cy.get("#total").should("have.text", "2");
+  });
 });
